@@ -213,8 +213,8 @@ void generateOTR(Tuple4<HashMap<String, StageEntry>, String, SendPort, bool> par
           Uint8List fileData = await file.readAsBytes();
           String fileName = "${entry.key}/${p.normalize(file.path).split("/").last}";
 
-          CreateFileResource mpqFile = mpqArchive.createFile(fileName, DateTime.now().millisecondsSinceEpoch ~/ 1000, fileLength, 0, MPQ_FILE_COMPRESS);
-          mpqFile.write(fileData, fileLength, MPQ_COMPRESSION_ZLIB);
+          CreateFileResource mpqFile = mpqArchive.createFile(fileName, DateTime.now().millisecondsSinceEpoch ~/ 1000, fileLength, 0, 0);
+          mpqFile.write(fileData, fileLength, 0);
           mpqFile.finish();
           params.item3.send(1);
         }
@@ -223,8 +223,8 @@ void generateOTR(Tuple4<HashMap<String, StageEntry>, String, SendPort, bool> par
           Sequence sequence = await compute(Sequence.fromSeqFile, pair);
           String fileName = "${entry.key}/${sequence.path}";
           Uint8List data = sequence.build();
-          CreateFileResource mpqFile = mpqArchive.createFile(fileName, DateTime.now().millisecondsSinceEpoch ~/ 1000, data.length, 0, MPQ_FILE_COMPRESS);
-          mpqFile.write(data, data.length, MPQ_COMPRESSION_ZLIB);
+          CreateFileResource mpqFile = mpqArchive.createFile(fileName, DateTime.now().millisecondsSinceEpoch ~/ 1000, data.length, 0, 0);
+          mpqFile.write(data, data.length, 0);
           mpqFile.finish();
           params.item3.send(1);
         }
@@ -241,8 +241,8 @@ void generateOTR(Tuple4<HashMap<String, StageEntry>, String, SendPort, bool> par
             continue;
           }
 
-          CreateFileResource mpqFile = mpqArchive.createFile(texture.item1, DateTime.now().millisecondsSinceEpoch ~/ 1000, texture.item2!.length, 0, MPQ_FILE_COMPRESS);
-          mpqFile.write(texture.item2!, texture.item2!.length, MPQ_COMPRESSION_ZLIB);
+          CreateFileResource mpqFile = mpqArchive.createFile(texture.item1, DateTime.now().millisecondsSinceEpoch ~/ 1000, texture.item2!.length, 0, 0);
+          mpqFile.write(texture.item2!, texture.item2!.length, 0);
           mpqFile.finish();
         }
       }

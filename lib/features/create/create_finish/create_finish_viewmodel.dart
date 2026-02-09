@@ -279,7 +279,7 @@ Future<void> generateOTR(Tuple5<HashMap<String, StageEntry>, String, SendPort, b
 Future<Tuple2<String, Uint8List?>> processTextureEntry(
     Tuple3<String, Tuple2<File, TextureManifestEntry>, bool> params) async {
   final pair = params.item2;
-  final textureName = pair.item1.path.split('/').last.split('.').first;
+  final textureName = pair.item1.path.split('/').last.split('.png').first;
   final fileName = '${params.item1}/$textureName';
 
   final data = await (pair.item2.textureType == TextureType.JPEG32bpp

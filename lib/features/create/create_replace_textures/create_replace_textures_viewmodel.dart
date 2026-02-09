@@ -185,7 +185,7 @@ Future<HashMap<String, ProcessedFilesInFolder>?> processFolder(
   for (final rawFile in texFiles) {
     final texFile = File(p.normalize(rawFile.path));
     final texPathRelativeToFolder =
-        p.normalize(texFile.path.split('$folderPath/').last.split('.').first);
+        p.normalize(texFile.path.split('$folderPath/').last.split('.png').first);
     if (manifest.containsKey(texPathRelativeToFolder)) {
       final manifestEntry =
           TextureManifestEntry.fromJson(manifest[texPathRelativeToFolder] as Map<String, dynamic>);
